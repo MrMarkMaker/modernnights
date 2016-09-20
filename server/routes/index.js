@@ -8,7 +8,7 @@ const characterController = require( '../controllers/characterController' );
 const statController = require( '../controllers/statController' );
 const poolController = require( '../controllers/poolController' );
 const costController = require( '../controllers/costController' );
-
+const territoryController = require('../controllers/territoryController');
 const helpers = require( '../lib/helpers' );
 
 module.exports = function ( app, express ) {
@@ -16,7 +16,11 @@ module.exports = function ( app, express ) {
   app.post( '/api/signup', playerController.signup );
   app.post( '/api/signin', playerController.signin );
 
-
+  /* PULSE */
+  /* Territory */
+  app.get( '/api/holdings', territoryController.getHoldings );
+  app.get( '/api/areas', territoryController.getAreas );
+  app.get( '/api/establishments', territoryController.getEstablishments );
   /* Add token on subsequent routes. */
   app.use( helpers.decode );
 
