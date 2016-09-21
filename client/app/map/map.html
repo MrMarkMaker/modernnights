@@ -1,3 +1,35 @@
+<style>
+  .boxframe{
+  background: #c4c4c4;
+  color: black;
+  width: 30em;
+  margin: 0 auto; 
+  
+  
+  }
+</style>
+
 <h1>Map</h1>
-<div ng-repeat="area in areas">
+<ul>
+<li ng-repeat="area in areas" ng-click="showEstablishments( area['id'] );">
+  {{area['Holding']['name']}}
+</li>
+</ul>
+
+<div class="boxframe">
+   <h2>{{activeplace['Holding']['name'] }}</h2>
+   <p>{{activeplace['Holding']['description']}}</p>
+ 
+  <div id="area-menu" ng-show="context==='area'">
+    <ul id="area-menu"> 
+      <li ng-repeat="establishment in establishments" ng-click="showEstablishment( establishment['id'] );">
+        {{establishment['Holding']['name']}}  
+      </li>
+    </ul>  
+    <button ng-click="closeMap()">Back</button>
+  </div>
+  
+  <div id="establishment-menu" ng-show="context==='establishment'">
+  <button ng-click="showEstablishments( activeplace['area_id'] )">Back</button>
+  </div>
 </div>

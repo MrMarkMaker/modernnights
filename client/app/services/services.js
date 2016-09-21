@@ -17,17 +17,50 @@ angular.module( 'modernnights.services', [] )
 
 .factory( 'Map', function( $http ){
   var getAreaData = function(){
-    console.log ("YOLO");
     return $http({
       method: 'GET',
       url: '/api/areas'
     })
-    .then( function( resp ) {
+    .then( function( resp ){
       return resp.data;
     })
   }
+  
+  var getEstablishmentsByArea = function( areaid ){
+    return $http({
+      method: 'GET',
+      url: '/api/establishments/' + areaid
+    })
+    .then( function( resp ){
+      return resp.data;
+    })
+  }
+  
+  var getArea = function( areaid ){
+    return $http({
+      method: 'GET',
+      url: '/api/area/' + areaid
+    })
+    .then(function(resp){
+      return resp.data
+    })
+  }
+  
+  var getEstablishment = function( estid ){
+    return $http({
+      method: 'GET',
+      url: '/api/establishment/' + estid
+    })
+    .then( function(resp){
+      return resp.data
+    })
+  }
+  
   return {
-    getAreaData
+    getAreaData,
+    getEstablishmentsByArea,
+    getArea,
+    getEstablishment
   }
 })
 

@@ -28,14 +28,17 @@ module.exports = function( models ) {
   const map = [
     { name: 'Civic Center', 
       level: '5',
+      description: 'A florida woman attacked her husband with a baby as a bludgeon.',
       establishments: [
         {
           name: 'City Hall', 
-          level: 3
+          level: 3,
+          description: 'This is city hall dscription.'
         },
         {
           name: 'Performing Arts Center',
-          level: 3
+          level: 3,
+          description: 'FloridaMan to the rescue.'
         },
       ]
     },
@@ -52,14 +55,14 @@ module.exports = function( models ) {
   ];
   
   const makeEstablishment = function( establishments, parentplace ){
-    console.log( "Tote smgotes ");
     
     establishments.forEach( function( establishment ){
       
       models.Holding.findOrCreate({
         where: {
           name: establishment.name,
-          level: establishment.level
+          level: establishment.level,
+          description: establishment.description
         }
       })
       .spread( function ( newplace ){
@@ -67,7 +70,7 @@ module.exports = function( models ) {
         { 
           where: {
             holding_id: newplace.id,
-            area_id: parentplace 
+            area_id: parentplace
           }
         })
       })
@@ -79,7 +82,8 @@ module.exports = function( models ) {
       models.Holding.findOrCreate({
         where: {
           name: mapsquare.name,
-          level: mapsquare.level
+          level: mapsquare.level,
+          description: mapsquare.description
         }
       })
       .spread( function( created ){   
