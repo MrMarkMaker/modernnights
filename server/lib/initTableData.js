@@ -51,7 +51,53 @@ module.exports = function( models ) {
     }
   ];
   
-  /* Archetypes */
+  const makeEstablishment = function( establishments, parentplace ){
+    console.log( "Tote smgotes ");
+    
+    establishments.forEach( function( establishment ){
+      
+      models.Holding.findOrCreate({
+        where: {
+          name: establishment.name,
+          level: establishment.level
+        }
+      })
+      .spread( function ( newplace ){
+        models.Establishment.findOrCreate( 
+        { 
+          where: {
+            holding_id: newplace.id,
+            area_id: parentplace 
+          }
+        })
+      })
+    });
+  };
+  
+  const fillMapEntries = function( mapsquares ){
+    map.forEach( function( mapsquare ){
+      models.Holding.findOrCreate({
+        where: {
+          name: mapsquare.name,
+          level: mapsquare.level
+        }
+      })
+      .spread( function( created ){   
+      
+        models.Area.findOrCreate({
+          where: { holding_id: created.id }
+        });
+      
+        if( mapsquare.establishments ){
+          makeEstablishment( mapsquare.establishments , created.id );
+        }
+      })
+    })   
+  };
+  
+  fillMapEntries( map );
+  
+    /* Archetypes */
   const archetypes = [
     'Architect',
     'Autocrat',
@@ -422,6 +468,5 @@ module.exports = function( models ) {
     // Where do ghoul and revenant sit?
 
   // todo: bulk-add orgs
-
 
 }

@@ -8,6 +8,7 @@ var app = angular.module( 'modernnights', [
   'modernnights.home',
   'modernnights.roster',
   'modernnights.services',
+  'modernnights.map'
   ])
 
 .config( function ( $routeProvider, $httpProvider ) {
@@ -42,6 +43,10 @@ var app = angular.module( 'modernnights', [
     templateUrl: 'app/chargen/chargen.html',
     controller: 'ChargenController',
     authenticate: true,
+  })
+  .when( '/map', {
+    templateUrl: 'app/map/map.html',
+    controller: 'MapController',
   })
   .otherwise({
     redirectTo: '/home',

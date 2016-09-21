@@ -15,6 +15,22 @@ angular.module( 'modernnights.services', [] )
   }
 })
 
+.factory( 'Map', function( $http ){
+  var getAreaData = function(){
+    console.log ("YOLO");
+    return $http({
+      method: 'GET',
+      url: '/api/areas'
+    })
+    .then( function( resp ) {
+      return resp.data;
+    })
+  }
+  return {
+    getAreaData
+  }
+})
+
 .factory( 'Character', function( $http ) {
   var create = function( char ) {
     return $http({

@@ -20,7 +20,10 @@ module.exports = function ( app, express ) {
   /* Territory */
   app.get( '/api/holdings', territoryController.getHoldings );
   app.get( '/api/areas', territoryController.getAreas );
+  app.get( '/api/area/:id', territoryController.getArea );
   app.get( '/api/establishments', territoryController.getEstablishments );
+  app.get( '/api/establishments/:areaid', territoryController.getEstablishmentsByArea );
+  app.get( '/api/establishment/:estid', territoryController.getEstablishment )
   /* Add token on subsequent routes. */
   app.use( helpers.decode );
 
