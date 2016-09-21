@@ -23,6 +23,34 @@ module.exports = function( models ) {
       writeAll: true,
     }
   });
+  
+  /* Map */
+  const map = [
+    { name: 'Civic Center', 
+      level: '5',
+      establishments: [
+        {
+          name: 'City Hall', 
+          level: 3
+        },
+        {
+          name: 'Performing Arts Center',
+          level: 3
+        },
+      ]
+    },
+    { 
+      name: 'The Tenderloin',
+      establishments: 
+      [
+        { name: 'Oddjob' }
+      ]
+    },
+    { 
+      name: 'Haight Ashbury' 
+    }
+  ];
+  
   /* Archetypes */
   const archetypes = [
     'Architect',
