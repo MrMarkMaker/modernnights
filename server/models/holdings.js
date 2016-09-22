@@ -11,7 +11,9 @@ module.exports = function( sequelize, DataTypes ) {
     reputation: DataTypes.INTEGER,
     manpower: DataTypes.INTEGER,
     level_modifier: DataTypes.INTEGER,
-    level: DataTypes.INTEGER
+    level: DataTypes.INTEGER,
+    latitude: DataTypes.FLOAT,
+    longitude: DataTypes.FLOAT
   });
   return Holding;
 };

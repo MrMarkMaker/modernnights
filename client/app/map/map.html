@@ -3,13 +3,25 @@
   background: #c4c4c4;
   color: black;
   width: 30em;
-  margin: 0 auto; 
-  
-  
+  margin: 0 auto;
   }
+  
+  #map-canvas{
+    width: 100%;
+    height: 600px;
+  }
+  
+  .button-list li{
+    background: grey;
+    border-radius: 1em;
+    margin: .25em;
+    padding: .5em;
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+  }
+  
 </style>
-
-<h1>Map</h1>
 <ul>
 <li ng-repeat="area in areas" ng-click="showEstablishments( area['id'] );">
   {{area['Holding']['name']}}
@@ -32,4 +44,10 @@
   <div id="establishment-menu" ng-show="context==='establishment'">
   <button ng-click="showEstablishments( activeplace['area_id'] )">Back</button>
   </div>
+  
+  <ul class="button-list">
+    <li>Manage</li>
+    <li>Use</li>
+    <li>Activity</li>
+  </ul>
 </div>
