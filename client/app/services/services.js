@@ -56,10 +56,21 @@ angular.module( 'modernnights.services', [] )
     })
   }
   
+  var claimHolding = function( holdid ){
+    return $http({
+      method: 'POST',
+      url: '/api/holding/claim/' + holdid
+    })
+    .then( function(resp){
+      return resp.data
+    })
+  }
+  
   return {
     getAreaData,
     getEstablishmentsByArea,
     getArea,
+    claimHolding,
     getEstablishment
   }
 })

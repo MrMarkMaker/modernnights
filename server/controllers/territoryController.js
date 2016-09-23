@@ -4,6 +4,7 @@ const Establishment = require( '../models' ).Establishment;
 const Holding = require( '../models' ).Holding;
 const Area = require( '../models' ).Area;
 const errorHandler = require( '../lib/helpers.js' ).errorHandler;
+const Claim = require( '../models' ).Claim;
 
 module.exports = {
 
@@ -95,5 +96,29 @@ module.exports = {
       errorHandler( err, req, res );
     });
   },
-
+  
+  claimHolding: function(req,res){
+    var holdid = parseInt( req.params.holdid );
+    Claim.find({ where: {holding_id: holdid} })
+    .then( function( data ){
+      if( data != null){
+        res.status( 400 ).send( 'A claim on this area already exists.' );
+      } else {
+        var playerid = 1; //fetch userID later pls
+        Claim.create({ 
+          holding_id: holdid
+        //Add player ID.
+        })
+        .then( function( data ){
+          if( data === null ){
+            res.status( 500 ).send( 'Error creating claim' );
+            return null;
+          } else {
+            res.status( 200 ).send( 'Success.' );
+            return null;
+          };
+        })
+      }
+    })
+  }
 }

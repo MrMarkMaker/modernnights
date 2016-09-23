@@ -23,7 +23,8 @@ module.exports = function ( app, express ) {
   app.get( '/api/area/:id', territoryController.getArea );
   app.get( '/api/establishments', territoryController.getEstablishments );
   app.get( '/api/establishments/:areaid', territoryController.getEstablishmentsByArea );
-  app.get( '/api/establishment/:estid', territoryController.getEstablishment )
+  app.get( '/api/establishment/:estid', territoryController.getEstablishment );
+  app.post( '/api/holding/claim/:holdid', territoryController.claimHolding );
   /* Add token on subsequent routes. */
   app.use( helpers.decode );
 

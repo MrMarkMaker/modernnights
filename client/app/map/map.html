@@ -38,16 +38,11 @@
         {{establishment['Holding']['name']}}  
       </li>
     </ul>  
-    <button ng-click="closeMap()">Back</button>
+    <span ng-click="closeMap()">Back</span>
   </div>
-  
+  <span class="asbutton" ng-click="claimHolding( activeplace['Holding']['id'] )" ng-show="context">Claim</span>
+  <span ng-show="claimmade">- Claimed.</span>
   <div id="establishment-menu" ng-show="context==='establishment'">
-  <button ng-click="showEstablishments( activeplace['area_id'] )">Back</button>
+    <span class="asbutton" ng-click="showEstablishments( activeplace['area_id'] )">Back</span>
   </div>
-  
-  <ul class="button-list">
-    <li>Manage</li>
-    <li>Use</li>
-    <li>Activity</li>
-  </ul>
 </div>

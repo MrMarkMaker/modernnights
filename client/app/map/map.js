@@ -1,5 +1,9 @@
 angular.module( 'modernnights.map', [] )
+  
   .controller( 'MapController', function( $scope, Map ){
+    
+    $scope.context = null;
+    
     $scope.areas = Map.getAreaData(); 
     $scope.context = '';
     Map.getAreaData()
@@ -39,5 +43,16 @@ angular.module( 'modernnights.map', [] )
       $scope.activeplace =[];
       $scope.context = null;
     }
+    
+    $scope.claimHolding = function( id ){
+      $scope.claimmade = false;
+      console.log( id );
+      Map.claimHolding( id )
+        .then( function ( data ){
+          $scope.claimmade = true;
+      });
+    }
   })
+  
+  
 
