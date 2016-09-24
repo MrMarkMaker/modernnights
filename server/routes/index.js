@@ -15,7 +15,7 @@ module.exports = function ( app, express ) {
   /* WHOAMI */
   app.post( '/api/signup', playerController.signup );
   app.post( '/api/signin', playerController.signin );
-
+  
   /* PULSE */
   /* Territory */
   app.get( '/api/holdings', territoryController.getHoldings );
@@ -25,6 +25,18 @@ module.exports = function ( app, express ) {
   app.get( '/api/establishments/:areaid', territoryController.getEstablishmentsByArea );
   app.get( '/api/establishment/:estid', territoryController.getEstablishment );
   app.post( '/api/holding/claim/:holdid', territoryController.claimHolding );
+  
+  /* STATS */
+  app.get( '/api/stats', statController.getStats );
+  app.get( '/api/stats/:sname', statController.getStatByName );
+  app.get( '/api/stats/type/:id', statController.getStatsByType );
+  app.get( '/api/characters/:id/canbuy', statController.canBuy );
+  
+  /* MONSTERS */
+  app.get( '/api/monsters', monsterController.getMonsters );
+  app.get( '/api/monsters/:id', monsterController.getMonsterById );
+  app.get( '/api/monsters/type/:id', monsterController.getMonstersByType );
+
   /* Add token on subsequent routes. */
   app.use( helpers.decode );
 
@@ -46,19 +58,9 @@ module.exports = function ( app, express ) {
   app.post( '/api/characters', characterController.makeCharacter );
   app.put( '/api/characters/:id', characterController.editCharacter );
 
-  /* MONSTERS */
-  app.get( '/api/monsters', monsterController.getMonsters );
-  app.get( '/api/monsters/:id', monsterController.getMonsterById );
-
   /* COSTS */
   app.get( '/api/stats/:sname/cost/:mid', costController.getMonsterCosts );
-
-  /* STATS */
-  app.get( '/api/stats', statController.getStats );
-  app.get( '/api/stats/:sname', statController.getStatByName );
-  app.get( '/api/stats/type/:id', statController.getStatsByType );
-  app.get( '/api/characters/:id/canbuy', statController.canBuy );
-
+  
   /* CHARACTER STATS */
   app.get( '/api/characters/:cid/:sname', characterController.getCharacterStat );
   app.put( '/api/characters/:cid/:sname', characterController.editCharacterStat );
@@ -81,5 +83,4 @@ module.exports = function ( app, express ) {
   // send it through our custom error handler
   app.use( helpers.errorLogger );
   app.use( helpers.errorHandler );
-
 };
