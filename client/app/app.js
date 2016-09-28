@@ -1,5 +1,6 @@
 var app = angular.module( 'modernnights', [
   'ngRoute',
+  'uiGmapgoogle-maps',
   'modernnights.auth',
   'modernnights.census',
   'modernnights.chargen',

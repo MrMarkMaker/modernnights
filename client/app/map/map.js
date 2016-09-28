@@ -3,6 +3,10 @@ angular.module( 'modernnights.map', [] )
   .controller( 'MapController', function( $scope, Map ){
     
     $scope.context = null;
+    $scope.map = {
+      center: { latitude: 37.7749, longitude: -122.4194 }, 
+      zoom: 12 
+    };
     
     $scope.areas = Map.getAreaData(); 
     $scope.context = '';

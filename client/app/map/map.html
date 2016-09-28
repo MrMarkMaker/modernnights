@@ -21,7 +21,12 @@
     display: inline-block;
   }
   
+  .angular-google-map-container{ height: 400px; }
+  
 </style>
+
+<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+
 <ul>
 <li ng-repeat="area in areas" ng-click="showEstablishments( area['id'] );">
   {{area['Holding']['name']}}
