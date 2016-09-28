@@ -7,8 +7,8 @@ angular.module( 'modernnights.map', [] )
     $scope.areas = Map.getAreaData(); 
     $scope.context = '';
     Map.getAreaData()
-    .then( function( data ){
-      $scope.areas = data;
+    .then( function( areas ){
+      $scope.areas = areas.data;
     });
   
     $scope.showEstablishments = function( areaid ){

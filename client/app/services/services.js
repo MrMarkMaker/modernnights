@@ -16,11 +16,13 @@ angular.module( 'modernnights.services', [] )
 })
 
 .factory( 'Map', function( $http ){
+  
   var getAreaData = function(){
     return $http({
       method: 'GET',
       url: '/api/areas'
-
+    })
+  }
   
   var getEstablishmentsByArea = function( areaid ){
     return $http({
@@ -62,7 +64,6 @@ angular.module( 'modernnights.services', [] )
     })
   }
   
-  
   return {
     getAreaData,
     getEstablishmentsByArea,
@@ -70,7 +71,8 @@ angular.module( 'modernnights.services', [] )
     claimHolding,
     getEstablishment
   }
-}
+  
+})
 
 .factory('Stat', function( $http ){
 

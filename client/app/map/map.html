@@ -34,15 +34,17 @@
  
   <div id="area-menu" ng-show="context==='area'">
     <ul id="area-menu"> 
-      <li ng-repeat="establishment in establishments" ng-click="showEstablishment( establishment['id'] );">
+      <li class="asbutton" ng-repeat="establishment in establishments" ng-click="showEstablishment( establishment['id'] );">
         {{establishment['Holding']['name']}}  
       </li>
     </ul>  
-    <span ng-click="closeMap()">Back</span>
+    
+    <span style="display:inline-block;" class="asbutton" ng-click="closeMap()">Back</span>
+    
   </div>
-  <span class="asbutton" ng-click="claimHolding( activeplace['Holding']['id'] )" ng-show="context">Claim</span>
-  <span ng-show="claimmade">- Claimed.</span>
-  <div id="establishment-menu" ng-show="context==='establishment'">
+  <span class="asbutton" style="display:inline-block;" class="asbutton" ng-click="claimHolding( activeplace['Holding']['id'] )" ng-show="context">Claim</span>
+  
+  <div class="row center" id="establishment-menu" ng-show="context==='establishment'">
     <span class="asbutton" ng-click="showEstablishments( activeplace['area_id'] )">Back</span>
   </div>
 </div>
