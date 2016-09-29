@@ -30,7 +30,9 @@ module.exports = function( models ) {
   const map = [
     { name: 'Civic Center', 
       level: '5',
-      description: 'A florida woman attacked her husband with a baby as a bludgeon.',
+      latitude: 37.7778532,
+      longitude: -122.4222458,
+      description: "The Civic Center's wealth of dominant government and cultural institutions is a prize to Kindred hungry for power and prestige. Ornate, beaux-arts facades and luxurious institutions command the streets, standing out against the ubiquitous Victorian brownstones and stucco-faced apartments. City Hall is an arresting sight in its height and grandeur, its green, baroque dome inspired by Parisian churches and accented with gold. UN plaza, a vast space laid with red brick, carves a purposeful path towards it. A massive fountain fires a constant volley of water from its decorative pool next to the BART station on Market street, attracting a veritable zoo of gulls and pigeons.",
       establishments: [
         {
           name: 'City Hall', 
@@ -44,15 +46,86 @@ module.exports = function( models ) {
         },
       ]
     },
+    {
+      name: 'Presidio',
+      latitude: 37.7989743,
+      longitude: -122.474963
+    },
+    {
+      name: 'Financial District',
+      latitude: 37.7927731,
+      longitude: -122.4054803
+    },
+    {
+      name: 'Chinatown',
+      latitude: 37.7940865,
+      longitude: -122.4115197
+    },
+    {
+      name: 'The Richmond',
+      latitude: 37.7796725,
+      longitude: -122.4916832
+    },
+    {
+      name: 'South of Market',
+      latitude: 37.7808144,
+      longitude: -122.4199706
+    },
+    {
+      name: 'The Sunset',
+      latitude: 37.7500379,
+      longitude: -122.501618
+    },
+    {
+      name: 'The Castro',
+      latitude: 37.7625247,
+      longitude: -122.4405557
+    },
+    {
+      name: 'The Mission',
+      latitude: 37.7599043,
+      longitude: -122.425623
+    },
+    {
+      name: 'Golden Gate Park',
+      latitude: 37.7694208,
+      longitude: -122.4884078,
+    },
+    {
+      name: 'Portrero Hill',
+      latitude: 37.7582657,
+      longitude: -122.4014102,
+    },
+    {
+      name: 'North Beach',
+      latitude: 37.8047121,
+      longitude: -122.4125845
+    },
+    {
+      name: 'Bayview-Hunters Point',
+      latitude: 37.7278637,
+      longitude: -122.3904264
+    },
+    {
+      name: 'West Oakland',
+      latitude: 37.8125262,
+      longitude: -122.3093823
+    },
     { 
       name: 'The Tenderloin',
+      description: "The Tenderloin is a hard-boiled red light district which has been there and done that, its streets long harboring alternative and criminal lifestyles: a veritable buffet for the undead. A chaotic tangle of fire escapes and pipes climb up along the Tenderloin's endless collection of single-room-occupancy hotels. These buildings are havens for parolees and vagrants. They loom above the weathered pavement, powerful structures made of thick, brick walls and deep-set windows with arched lintels. Lighting the cityscape are the colors of art-deco blade signs, in vibrant red or ghostly blue. Their 1920s look lends a touch of noir to this gritty den.", 
+      latitude: 37.7839295,
+      longitude: -122.4174405,
       establishments: 
+      
       [
         { name: 'Oddjob' }
       ]
     },
     { 
-      name: 'Haight Ashbury' 
+      name: 'Haight Ashbury',
+      latitude: 37.7699936,
+      longitude: -122.4492284
     }
   ];
   
@@ -85,7 +158,9 @@ module.exports = function( models ) {
         where: {
           name: mapsquare.name,
           level: mapsquare.level,
-          description: mapsquare.description
+          description: mapsquare.description,
+          latitude: mapsquare.latitude,
+          longitude: mapsquare.longitude
         }
       })
       .spread( function( created ){   

@@ -6,11 +6,6 @@
   margin: 0 auto;
   }
   
-  #map-canvas{
-    width: 100%;
-    height: 600px;
-  }
-  
   .button-list li{
     background: grey;
     border-radius: 1em;
@@ -21,35 +16,97 @@
     display: inline-block;
   }
   
-  .angular-google-map-container{ height: 400px; }
+  .mapmarkerlabel{
+    font-weight: 300;
+    background: #fff;
+    padding: .66em;
+    border-radius:1px 5px 5px 5px;
+    border: 2px solid #38414e;
+    font-size: 10px;
+  }
+ 
+  .angular-google-map-container{ 
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+  
+  .sidebar{
+    height:100%;
+    width: 33%;
+    background: ;
+    position: absolute;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    z-index: 1;
+    background: linear-gradient(to bottom, #e4e9e4, #d4d9d4);
+    border-right: 5px solid #35483a;
+    box-shadow: 3px 3px 20px rgba(0,0,0,.5);
+    padding: 1em;
+    box-sizing: border-box;
+    overflow-y: scroll;
+  }
+  .sidebar p{
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: justify;
+  }
+
+  .sidebar img{
+    width: 100%;
+    border-radius: .66em;
+  }
+  .frame{
+    border-radius: 1em;
+    background: #15281a;
+    padding:.33em;
+  }
+  #context-buttons{
+    margin: 0 auto;
+    text-align: center;
+    padding: .66em;
+  }
+  
+  
+
   
 </style>
 
-<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
-
-<ul>
-<li ng-repeat="area in areas" ng-click="showEstablishments( area['id'] );">
-  {{area['Holding']['name']}}
-</li>
-</ul>
-
-<div class="boxframe">
-   <h2>{{activeplace['Holding']['name'] }}</h2>
-   <p>{{activeplace['Holding']['description']}}</p>
- 
-  <div id="area-menu" ng-show="context==='area'">
-    <ul id="area-menu"> 
-      <li class="asbutton" ng-repeat="establishment in establishments" ng-click="showEstablishment( establishment['id'] );">
-        {{establishment['Holding']['name']}}  
-      </li>
-    </ul>  
+  <div class="sidebar" ng-show="activeplace != null">
+    <h2 class="center">{{activeplace['Holding']['name'] }}</h2>
+   
+    <div class="frame">
+      <img src="/lib/img/map/{{activeplace['Holding']['name']}}.jpg" />
+      <div id="context-buttons">
+        <span class="asbutton">Play</span> <!-- ToDo: when user hits 'play', their charbit is put in that location and they are directed to the chat. -->
+        <span class="asbutton">Territory</span> <!-- ToDo: when user hits this, the equivalent of +inf/see <location> will display -->
+        <span class="asbutton">Hunt</span> <!-- ToDo: Only shows up for Vampires. Charbit will be given the opportunity to hunt and fill their bloodpool. -->
+        <span class="asbutton" ng-click="showEstablishments( activeplace['area_id'] )">Back</span>   
+      </div>
+    </div>
     
-    <span style="display:inline-block;" class="asbutton" ng-click="closeMap()">Back</span>
-    
+    <p>{{activeplace['Holding']['description']}}</p>
+
+    <div id="area-menu" ng-show="context==='area'">
+      <ul id="area-menu"> 
+        <li class="asbutton" ng-repeat="establishment in establishments" ng-click="showEstablishment( establishment['id'] );">
+          {{establishment['Holding']['name']}}  
+        </li>
+      </ul> 
+    </div>
+    <div class="row center" id="establishment-menu" ng-show="context==='establishment'">
+    </div>
   </div>
-  <span class="asbutton" style="display:inline-block;" class="asbutton" ng-click="claimHolding( activeplace['Holding']['id'] )" ng-show="context">Claim</span>
   
-  <div class="row center" id="establishment-menu" ng-show="context==='establishment'">
-    <span class="asbutton" ng-click="showEstablishments( activeplace['area_id'] )">Back</span>
+  <div style="height:500px; width:100%">
+    <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'>
+      <ui-gmap-markers models="pulseMarkers" coords="'coords'" options="'options'" click="showEstablishments( id )"></ui-gmap-markers>
+    </ui-gmap-google-map>
   </div>
-</div>
+  
+  
+

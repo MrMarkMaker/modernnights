@@ -69,7 +69,7 @@ module.exports = {
   
   getArea: function( req, res ) {
     var id = parseInt( req.params.id );
-    Area.find({ where: { id: id }, include: [Holding] })
+    Area.find({ where: { holding_id: id }, include: [Holding] })
     .then( function( data ) {
       if( data.length === 0 ) {
         res.status( 404 ).send( 'No area found' );
