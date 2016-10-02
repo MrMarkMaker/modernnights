@@ -40,9 +40,10 @@ module.exports = {
       errorHandler( err, req, res );
     });
   },
+  
 
   // expects 'sname' in req.params
-  getStatByName: function( req, res ) {
+  getStatByName: function( req, res ){
     var name = req.params.sname;
     if( typeof name !== 'string' ) {
       res.status( 400 ).send( 'Invalid name' );
@@ -66,7 +67,6 @@ module.exports = {
   getStatsByType: function( req, res ){
     var id = new Promise( function( resolve, reject ){
       if( isNaN( req.params.id ) ){
-        console.log( "Looking up stat ID.");
         StatType.findOne({
           where: 
           {name: req.params.id }
@@ -118,6 +118,36 @@ module.exports = {
     //   social   4
   },
 
+  getMonsterStatsByType: function( req, res ){  
+    var id = req.params.id; //string like "powers"
+    var monster = req.params.monster;   //string like "Lasombra"
+    
+    getStatsByType()
+    
+    //Find the hierarchy level of this monster 
+    Monster.find({
+      where: { name: monster }
+    })
+    .then( function( monsterdata ){
+      var hierarchyLevel = monsterdata.hierarchyLevel; 
+      for( var i = 0; i < hierarchyLevel; i++ ){
+        
+      }
+    })
+    
+    getStatsByType( id )
+    .then( function( powers ){
+      powers.forEach( function( power ){
+        MonsterStats.find({
+        where: {
+          stat_id: power.id,
+          monster_id: monster
+        }
+      })  
+      })
+    });
+  },
+  
   canBuy: function( req, res ) {
 
   },
